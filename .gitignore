@@ -1,0 +1,8 @@
+# Directories
+
+/.vs
+/out
+
+# Files
+
+CMakeSettings.json
