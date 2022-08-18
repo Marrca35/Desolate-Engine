@@ -3,7 +3,7 @@
 #include <cassert>
 #include <exception>
 #include <fstream>
-#include <Windows.h>
+//#include <Windows.h>
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -138,8 +138,8 @@ int main(int argc, char *argv[])
 		coloredVA.AddBuffer(coloredVB, coloredVBL);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ib.GetID());
 
-		auto texturedShader = walnut::Shader::LoadFromFiles("assets/shaders/Textured.vert", "assets/shaders/Textured.frag");
-		auto coloredShader = walnut::Shader::LoadFromFiles("assets/shaders/Colored.vert", "assets/shaders/Colored.frag");
+		auto texturedShader = walnut::Shader::LoadFromFiles("./assets/shaders/Textured.vert", "./assets/shaders/Textured.frag");
+		auto coloredShader = walnut::Shader::LoadFromFiles("./assets/shaders/Colored.vert", "./assets/shaders/Colored.frag");
 
 		camera = walnut::OrthographicCamera(-ratio * zoom, ratio * zoom, -zoom, zoom);
 		glm::mat4 tansform = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));
@@ -178,7 +178,7 @@ int main(int argc, char *argv[])
 			glUseProgram(texturedShader->GetID());
 			glBindVertexArray(texturedVA.GetID());
 
-			//glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr);
+			glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr);
 
 			glBindVertexArray(0);
 			glUseProgram(0);
@@ -186,7 +186,7 @@ int main(int argc, char *argv[])
 			glUseProgram(coloredShader->GetID());
 			glBindVertexArray(coloredVA.GetID());
 
-			glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr);
+			//glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr);
 
 			glBindVertexArray(0);
 			glUseProgram(0);
@@ -220,7 +220,7 @@ void GLFWErrorCallback(int error, const char *description)
 	std::cerr << "[GLFW ERROR " << error << "]: " << description << std::endl;
 }
 
-INT WINAPI WinMain(
+/*INT WINAPI WinMain(
 	_In_	 HINSTANCE hInst,
 	_In_opt_ HINSTANCE hPrevInst,
 	_In_	 LPSTR lpCmdLine,
@@ -230,4 +230,4 @@ INT WINAPI WinMain(
 	out << "Application exited with return code (" << returnCode << ')' << std::endl;
 	out.close();
 	return returnCode;
-}
+}*/
