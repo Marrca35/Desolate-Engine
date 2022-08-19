@@ -5,7 +5,7 @@
 #include "VertexArray.h"
 #include "Shader.h"
 
-namespace walnut {
+namespace lacuna {
 	class Renderer {
 	public:
 		static void Init();

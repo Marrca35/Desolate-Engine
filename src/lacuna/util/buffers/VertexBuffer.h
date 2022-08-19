@@ -4,7 +4,7 @@
 
 #include "common/VertexBufferLayout.h"
 
-namespace walnut {
+namespace lacuna {
 	class VertexBuffer {
 	public:
 		VertexBuffer(const void *data, GLsizeiptr size);

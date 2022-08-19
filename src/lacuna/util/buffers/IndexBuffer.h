@@ -2,7 +2,7 @@
 
 #include <glad/glad.h>
 
-namespace walnut {
+namespace lacuna {
 	class IndexBuffer {
 	public:
 		IndexBuffer(const GLuint *data, GLint count);

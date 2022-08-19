@@ -2,7 +2,7 @@
 
 #include <glad/glad.h>
 
-namespace walnut {
+namespace lacuna {
 	VertexBuffer::VertexBuffer(const void *data, GLsizeiptr size)
 	{
 		glCreateBuffers(1, &m_ID);

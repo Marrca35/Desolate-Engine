@@ -1,6 +1,6 @@
 #pragma once
 
-namespace walnut {
+namespace lacuna {
 	class Texture {
 
 	};

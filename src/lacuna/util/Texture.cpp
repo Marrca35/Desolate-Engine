@@ -1,5 +1,5 @@
 #include "Texture.h"
 
-namespace walnut {
+namespace lacuna {
 
 }

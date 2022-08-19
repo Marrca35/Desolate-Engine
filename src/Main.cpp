@@ -13,11 +13,11 @@
 
 #include "main.h"
 
-#include "walnut/util/Shader.h"
-#include "walnut/util/VertexArray.h"
-#include "walnut/util/Buffers.h"
+#include "lacuna/util/Shader.h"
+#include "lacuna/util/VertexArray.h"
+#include "lacuna/util/Buffers.h"
 
-#include "walnut/util/camera/OrthographicCamera.h"
+#include "lacuna/util/camera/OrthographicCamera.h"
 
 static bool running;
 
@@ -28,7 +28,7 @@ static std::ofstream out;
 const float ratio = (16.0f / 9.0f);
 float zoom = 3.5f;
 
-walnut::OrthographicCamera camera = walnut::OrthographicCamera(0.0f, 0.0f, 0.0f, 0.0f);
+lacuna::OrthographicCamera camera = lacuna::OrthographicCamera(0.0f, 0.0f, 0.0f, 0.0f);
 
 int main(int argc, char *argv[])
 {
@@ -118,30 +118,30 @@ int main(int argc, char *argv[])
 			9, 11, 8,
 		};
 
-		walnut::VertexArray texturedVA;
-		walnut::VertexBuffer texturedVB(texturedVertices, sizeof(texturedVertices));
-		walnut::VertexBufferLayout texturedVBL;
-		texturedVBL.Push(walnut::push_t::Float, 3, sizeof(float) * 5);
-		texturedVBL.Push(walnut::push_t::Float, 2, sizeof(float) * 5);
+		lacuna::VertexArray texturedVA;
+		lacuna::VertexBuffer texturedVB(texturedVertices, sizeof(texturedVertices));
+		lacuna::VertexBufferLayout texturedVBL;
+		texturedVBL.Push(lacuna::push_t::Float, 3, sizeof(float) * 5);
+		texturedVBL.Push(lacuna::push_t::Float, 2, sizeof(float) * 5);
 		texturedVA.AddBuffer(texturedVB, texturedVBL);
-		walnut::IndexBuffer ib(indices, 18);
+		lacuna::IndexBuffer ib(indices, 18);
 
 		glBindVertexArray(0);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-		walnut::VertexArray coloredVA;
-		walnut::VertexBuffer coloredVB(coloredVertices, sizeof(coloredVertices));
-		walnut::VertexBufferLayout coloredVBL;
-		coloredVBL.Push(walnut::push_t::Float, 3, sizeof(float) * 7);
-		coloredVBL.Push(walnut::push_t::Float, 4, sizeof(float) * 7);
+		lacuna::VertexArray coloredVA;
+		lacuna::VertexBuffer coloredVB(coloredVertices, sizeof(coloredVertices));
+		lacuna::VertexBufferLayout coloredVBL;
+		coloredVBL.Push(lacuna::push_t::Float, 3, sizeof(float) * 7);
+		coloredVBL.Push(lacuna::push_t::Float, 4, sizeof(float) * 7);
 		coloredVA.AddBuffer(coloredVB, coloredVBL);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ib.GetID());
 
-		auto texturedShader = walnut::Shader::LoadFromFiles("./assets/shaders/Textured.vert", "./assets/shaders/Textured.frag");
-		auto coloredShader = walnut::Shader::LoadFromFiles("./assets/shaders/Colored.vert", "./assets/shaders/Colored.frag");
+		auto texturedShader = lacuna::Shader::LoadFromFiles("./assets/shaders/Textured.vert", "./assets/shaders/Textured.frag");
+		auto coloredShader = lacuna::Shader::LoadFromFiles("./assets/shaders/Colored.vert", "./assets/shaders/Colored.frag");
 
-		camera = walnut::OrthographicCamera(-ratio * zoom, ratio * zoom, -zoom, zoom);
+		camera = lacuna::OrthographicCamera(-ratio * zoom, ratio * zoom, -zoom, zoom);
 		glm::mat4 tansform = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));
 
 		glBindVertexArray(0);

@@ -8,7 +8,7 @@
 #include <unordered_map>
 #include <memory>
 
-namespace walnut {
+namespace lacuna {
 	class Shader {
 	public:
 		Shader(const std::string &vertSource, const std::string &fragSource);

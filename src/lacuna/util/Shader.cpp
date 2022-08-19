@@ -6,7 +6,7 @@
 
 #include <glm/gtc/type_ptr.hpp>
 
-namespace walnut {
+namespace lacuna {
 	Shader::Shader(const std::string &vertSource, const std::string &fragSource)
 		: m_ID(CreateShader(vertSource, fragSource))
 	{ }

@@ -2,7 +2,7 @@
 
 #include <glad/glad.h>
 
-namespace walnut {
+namespace lacuna {
 #ifndef __buffers
 	class VertexBuffer;
 	class VertexBufferLayout;

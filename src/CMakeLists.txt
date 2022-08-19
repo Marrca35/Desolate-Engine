@@ -8,45 +8,45 @@ add_executable(${PROJECT_NAME}
 
 	"main.h"
 
-	# '/walnut/util' sources
+	# '/lacuna/util' sources
 
-	"walnut/util/Renderer.cpp"
-	"walnut/util/Shader.cpp"
-	"walnut/util/Texture.cpp"
-	"walnut/util/VertexArray.cpp"
+	"lacuna/util/Renderer.cpp"
+	"lacuna/util/Shader.cpp"
+	"lacuna/util/Texture.cpp"
+	"lacuna/util/VertexArray.cpp"
 
-	# '/walnut/util' headers
+	# '/lacuna/util' headers
 
-	"walnut/util/Renderer.h"
-	"walnut/util/Shader.h"
-	"walnut/util/Texture.h"
-	"walnut/util/VertexArray.h"
+	"lacuna/util/Renderer.h"
+	"lacuna/util/Shader.h"
+	"lacuna/util/Texture.h"
+	"lacuna/util/VertexArray.h"
 
-	# '/walnut/util/buffers' sources
+	# '/lacuna/util/buffers' sources
 
-	"walnut/util/buffers/IndexBuffer.cpp"
-	"walnut/util/buffers/VertexBuffer.cpp"
+	"lacuna/util/buffers/IndexBuffer.cpp"
+	"lacuna/util/buffers/VertexBuffer.cpp"
 
-	# '/walnut/util/buffers' headers
+	# '/lacuna/util/buffers' headers
 
-	"walnut/util/buffers/IndexBuffer.h"
-	"walnut/util/buffers/VertexBuffer.h"
+	"lacuna/util/buffers/IndexBuffer.h"
+	"lacuna/util/buffers/VertexBuffer.h"
 
-	# '/walnut/util/buffers/common' sources
+	# '/lacuna/util/buffers/common' sources
 
-	"walnut/util/buffers/common/VertexBufferLayout.cpp"
+	"lacuna/util/buffers/common/VertexBufferLayout.cpp"
 	
-	# '/walnut/util/buffers/common' headers
+	# '/lacuna/util/buffers/common' headers
 
-	"walnut/util/buffers/common/VertexBufferLayout.h"
+	"lacuna/util/buffers/common/VertexBufferLayout.h"
 
-	# '/walnut/util/camera' sources
+	# '/lacuna/util/camera' sources
 
-	"walnut/util/camera/OrthographicCamera.cpp"
+	"lacuna/util/camera/OrthographicCamera.cpp"
 
-	# '/walnut/util/camera' headers
+	# '/lacuna/util/camera' headers
 
-	"walnut/util/camera/OrthographicCamera.h"
+	"lacuna/util/camera/OrthographicCamera.h"
 )
 target_include_directories(${PROJECT_NAME} PRIVATE
 	"${PROJECT_SOURCE_DIR}/deps/glfw/include"

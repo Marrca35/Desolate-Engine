@@ -2,7 +2,7 @@
 
 #include <glad/glad.h>
 
-namespace walnut {
+namespace lacuna {
 	IndexBuffer::IndexBuffer(const GLuint *data, GLint count) : m_Count(count)
 	{
 		glCreateBuffers(1, &m_ID);

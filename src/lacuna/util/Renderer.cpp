@@ -1,6 +1,6 @@
 #include "Renderer.h"
 
-namespace walnut {
+namespace lacuna {
 	void Renderer::Init()
 	{
 		

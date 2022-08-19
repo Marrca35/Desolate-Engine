@@ -4,7 +4,7 @@
 
 #include <glad/glad.h>
 
-namespace walnut {
+namespace lacuna {
 	class OrthographicCamera {
 	public:
 		OrthographicCamera(float left, float right, float bottom, float top);

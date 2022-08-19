@@ -4,7 +4,7 @@
 
 #include <glad/glad.h>
 
-namespace walnut {
+namespace lacuna {
 	VertexBufferLayout::VertexBufferLayout(void) : m_Stride(0)
 	{ }
 	void VertexBufferLayout::Push(push_t type, GLuint count)

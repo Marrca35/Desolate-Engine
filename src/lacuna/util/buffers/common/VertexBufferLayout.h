@@ -4,7 +4,7 @@
 
 #include <vector>
 
-namespace walnut {
+namespace lacuna {
 	struct VertexBufferElement;
 	enum class push_t;
 

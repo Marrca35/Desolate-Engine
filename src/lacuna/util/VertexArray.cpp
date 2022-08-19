@@ -7,7 +7,7 @@
 
 #include <iostream>
 
-namespace walnut {
+namespace lacuna {
 	VertexArray::VertexArray()
 	{
 		glCreateVertexArrays(1, &m_ID);
