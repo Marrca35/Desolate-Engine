@@ -1,15 +1,15 @@
 [submodule "glfw"]
-	path = deps/glfw/    
-	url = https://github.com/glfw/glfw/
+	path = deps/glfw  
+	url = https://github.com/glfw/glfw
     
 [submodule "glm"]
-    path = deps/glm/
-    url = https://github.com/g-truc/glm/
+    path = deps/glm
+    url = https://github.com/g-truc/glm
 
 [submodule "glad"]
-    path = deps/glad/
-    url = https://github.com/Dav1dde/glad/tree/glad2/
+    path = deps/glad
+    url = https://github.com/Dav1dde/glad/tree/glad2
 
 [submodule "stb"]
-    path = deps/stb/
-    url = https://github.com/nothings/stb/
+    path = deps/stb
+    url = https://github.com/nothings/stb
