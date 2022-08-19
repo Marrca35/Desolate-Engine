@@ -49,12 +49,13 @@ add_executable(${PROJECT_NAME}
 	"walnut/util/camera/OrthographicCamera.h"
 )
 target_include_directories(${PROJECT_NAME} PRIVATE
-#	"${PROJECT_SOURCE_DIR}/deps/glfw/include"
+	"${PROJECT_SOURCE_DIR}/deps/glfw/include"
 	"${PROJECT_SOURCE_DIR}/deps/glad/include"
-#	"${PROJECT_SOURCE_DIR}/deps/glm"
+	"${PROJECT_SOURCE_DIR}/deps/glm"
+	"${PROJECT_SOURCE_DIR}/deps/stb"
 )
 target_link_directories(${PROJECT_NAME} PRIVATE
-#	"${CMAKE_BINARY_DIR}/deps/glfw/src"
+	"${CMAKE_BINARY_DIR}/deps/glfw/src"
 	"${CMAKE_BINARY_DIR}/deps/glad"
 )
-target_link_libraries(${PROJECT_NAME} PRIVATE GL glad glfw m Xrandr Xi X11 Xxf86vm pthread dl Xinerama Xcursor)
+target_link_libraries(${PROJECT_NAME} PRIVATE GL glad glfw3 m Xrandr Xi X11 Xxf86vm pthread dl Xinerama Xcursor)
