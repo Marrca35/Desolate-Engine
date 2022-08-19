@@ -178,7 +178,7 @@ int main(int argc, char *argv[])
 			glUseProgram(texturedShader->GetID());
 			glBindVertexArray(texturedVA.GetID());
 
-			//glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr);
+			glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr);
 
 			glBindVertexArray(0);
 			glUseProgram(0);
@@ -186,7 +186,7 @@ int main(int argc, char *argv[])
 			glUseProgram(coloredShader->GetID());
 			glBindVertexArray(coloredVA.GetID());
 
-			glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr);
+			//glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr);
 
 			glBindVertexArray(0);
 			glUseProgram(0);
