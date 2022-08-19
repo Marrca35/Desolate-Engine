@@ -8,45 +8,45 @@ add_executable(${PROJECT_NAME}
 
 	"main.h"
 
-	# '/lacuna/util' sources
+	# '/lacuna/util/opengl' sources
 
-	"lacuna/util/Renderer.cpp"
-	"lacuna/util/Shader.cpp"
-	"lacuna/util/Texture.cpp"
-	"lacuna/util/VertexArray.cpp"
+	"lacuna/util/opengl/Renderer.cpp"
+	"lacuna/util/opengl/Shader.cpp"
+	"lacuna/util/opengl/Texture.cpp"
+	"lacuna/util/opengl/VertexArray.cpp"
 
-	# '/lacuna/util' headers
+	# '/lacuna/util/opengl' headers
 
-	"lacuna/util/Renderer.h"
-	"lacuna/util/Shader.h"
-	"lacuna/util/Texture.h"
-	"lacuna/util/VertexArray.h"
+	"lacuna/util/opengl/Renderer.h"
+	"lacuna/util/opengl/Shader.h"
+	"lacuna/util/opengl/Texture.h"
+	"lacuna/util/opengl/VertexArray.h"
 
-	# '/lacuna/util/buffers' sources
+	# '/lacuna/util/opengl/buffers' sources
 
-	"lacuna/util/buffers/IndexBuffer.cpp"
-	"lacuna/util/buffers/VertexBuffer.cpp"
+	"lacuna/util/opengl/buffers/IndexBuffer.cpp"
+	"lacuna/util/opengl/buffers/VertexBuffer.cpp"
 
-	# '/lacuna/util/buffers' headers
+	# '/lacuna/util/opengl/buffers' headers
 
-	"lacuna/util/buffers/IndexBuffer.h"
-	"lacuna/util/buffers/VertexBuffer.h"
+	"lacuna/util/opengl/buffers/IndexBuffer.h"
+	"lacuna/util/opengl/buffers/VertexBuffer.h"
 
-	# '/lacuna/util/buffers/common' sources
+	# '/lacuna/util/opengl/buffers/common' sources
 
-	"lacuna/util/buffers/common/VertexBufferLayout.cpp"
+	"lacuna/util/opengl/buffers/common/VertexBufferLayout.cpp"
 	
-	# '/lacuna/util/buffers/common' headers
+	# '/lacuna/util/opengl/buffers/common' headers
 
-	"lacuna/util/buffers/common/VertexBufferLayout.h"
+	"lacuna/util/opengl/buffers/common/VertexBufferLayout.h"
 
-	# '/lacuna/util/camera' sources
+	# '/lacuna/util/opengl/camera' sources
 
-	"lacuna/util/camera/OrthographicCamera.cpp"
+	"lacuna/util/opengl/camera/OrthographicCamera.cpp"
 
-	# '/lacuna/util/camera' headers
+	# '/lacuna/util/opengl/camera' headers
 
-	"lacuna/util/camera/OrthographicCamera.h"
+	"lacuna/util/opengl/camera/OrthographicCamera.h"
 )
 target_include_directories(${PROJECT_NAME} PRIVATE
 	"${PROJECT_SOURCE_DIR}/deps/glfw/include"
@@ -58,4 +58,9 @@ target_link_directories(${PROJECT_NAME} PRIVATE
 	"${CMAKE_BINARY_DIR}/deps/glfw/src"
 	"${CMAKE_BINARY_DIR}/deps/glad"
 )
+if (UNIX)
 target_link_libraries(${PROJECT_NAME} PRIVATE GL glad glfw3 m Xrandr Xi X11 Xxf86vm pthread dl Xinerama Xcursor)
+endif (UNIX)
+if (WIN32)
+target_link_libraries(${PROJECT_NAME} PRIVATE glad glfw3 opengl32)
+endif (WIN32)

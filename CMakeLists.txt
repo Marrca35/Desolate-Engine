@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.1...3.17 FATAL_ERROR)
 
-project(LearnOpenGL VERSION 0.1.0)
+project(LacunaEngine VERSION 0.1.0)
 
 # dependency subdirectories
 add_subdirectory("deps/glad")

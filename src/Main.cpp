@@ -3,7 +3,9 @@
 #include <cassert>
 #include <exception>
 #include <fstream>
-//#include <Windows.h>
+#ifdef _WIN32
+#include <Windows.h>
+#endif
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
@@ -13,11 +15,11 @@
 
 #include "main.h"
 
-#include "lacuna/util/Shader.h"
-#include "lacuna/util/VertexArray.h"
-#include "lacuna/util/Buffers.h"
+#include "lacuna/util/opengl/Shader.h"
+#include "lacuna/util/opengl/VertexArray.h"
+#include "lacuna/util/opengl/Buffers.h"
 
-#include "lacuna/util/camera/OrthographicCamera.h"
+#include "lacuna/util/opengl/camera/OrthographicCamera.h"
 
 static bool running;
 
@@ -178,7 +180,7 @@ int main(int argc, char *argv[])
 			glUseProgram(texturedShader->GetID());
 			glBindVertexArray(texturedVA.GetID());
 
-			glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr);
+			//glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr);
 
 			glBindVertexArray(0);
 			glUseProgram(0);
@@ -186,7 +188,7 @@ int main(int argc, char *argv[])
 			glUseProgram(coloredShader->GetID());
 			glBindVertexArray(coloredVA.GetID());
 
-			//glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr);
+			glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr);
 
 			glBindVertexArray(0);
 			glUseProgram(0);
@@ -220,7 +222,9 @@ void GLFWErrorCallback(int error, const char *description)
 	std::cerr << "[GLFW ERROR " << error << "]: " << description << std::endl;
 }
 
-/*INT WINAPI WinMain(
+
+#ifdef _WIN32
+INT WINAPI WinMain(
 	_In_	 HINSTANCE hInst,
 	_In_opt_ HINSTANCE hPrevInst,
 	_In_	 LPSTR lpCmdLine,
@@ -230,4 +234,5 @@ void GLFWErrorCallback(int error, const char *description)
 	out << "Application exited with return code (" << returnCode << ')' << std::endl;
 	out.close();
 	return returnCode;
-}*/
+}
+#endif
