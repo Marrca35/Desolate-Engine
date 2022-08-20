@@ -2,6 +2,8 @@
 #define __window_hpp_
 
 #include "lacuna/include.hpp"
+#include "GLFWCallbackWrapper.hpp"
+#include "lacuna/util/error/ErrorHandler.hpp"
 
 namespace lacuna {
     class Window {
@@ -10,6 +12,8 @@ namespace lacuna {
 
         void Init();
         void Destroy();
+
+        void SetFullscreen(bool fullscreen) { this->fullscreen = fullscreen; }
 
         GLFWwindow* GetWindowHandle() { return window; }
 
@@ -21,6 +25,8 @@ namespace lacuna {
         const char* name;
         int width, height;
         int monitor;
+        bool fullscreen;
     };
 }
+
 #endif // __window_hpp_

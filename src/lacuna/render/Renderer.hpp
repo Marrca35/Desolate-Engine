@@ -1,8 +1,9 @@
 #ifndef __renderer_hpp_
 #define __renderer_hpp_
-#include "Window.hpp"
 
 #include "lacuna/include.hpp"
+#include "lacuna/util/window/Window.hpp"
+#include "lacuna/util/window/GLFWCallbackWrapper.hpp"
 
 namespace lacuna {
     enum RendererAPI : int {
@@ -11,12 +12,10 @@ namespace lacuna {
 
     class Renderer {
         public:
-        Renderer(RendererAPI api, Window &window);
-        void Init();
-        void Destroy();
+        static void Init(Window& window, RendererAPI api);
+        static void Destroy(Window& window, RendererAPI api);
         private:
-        RendererAPI api;
-        Window& window;
     };
 };
+
 #endif // __renderer_hpp_

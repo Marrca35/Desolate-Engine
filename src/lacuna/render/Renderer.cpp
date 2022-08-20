@@ -1,35 +1,58 @@
 #include "Renderer.hpp"
-#include "Window.hpp"
+
+#include <iostream>
 
 namespace lacuna {
-        Renderer::Renderer(RendererAPI api, Window& window) : api(api), window(window) { }
-        void Renderer::Init() {
+        void Renderer::Init(Window& window, RendererAPI api) {
             switch (api) {
-                case RendererAPI::OPENGL:
+                case OPENGL:
                     {
+                        if (!glfwInit()) {
+                            ErrorHandler::ThrowError("FATAL: failed to initalize glfw!", ErrorType::RUNTIME);
+                        }
                         glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
 	                    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
 	                    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	                    glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
                         window.Init();
+                        glfwMakeContextCurrent(window.GetWindowHandle());
+                        if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
+	                    {
+                            ErrorHandler::ThrowError("FATAL: failed to initialize glad!", ErrorType::RUNTIME);
+	                    }
+                        glfwShowWindow(window.GetWindowHandle());
                         break;
                     }
-                case RendererAPI::VULKAN:
+                case VULKAN:
                     {
                         glfwWindowHint(GLFW_CLIENT_API, GLFW_NO_API);
                         glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
                         window.Init();
                         break;
                     }
-                case RendererAPI::DIRECTX:
+                case DIRECTX:
                     {
                         window.Init();
                     }
             }
         }
-        void Renderer::Destroy() {
+        void Renderer::Destroy(Window& window, RendererAPI api) {
             switch (api) {
-
+                case OPENGL:
+                    {
+                        glfwMakeContextCurrent(nullptr);
+                        window.Destroy();
+                        glfwTerminate();
+                        break;
+                    }
+                case VULKAN:
+                    {
+                        break;
+                    }
+                case DIRECTX:
+                    {
+                        break;
+                    }
             }
         }
 };

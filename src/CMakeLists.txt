@@ -12,6 +12,24 @@ add_executable(${PROJECT_NAME}
 
 	"lacuna/include.hpp"
 
+	# '/lacuna/util/window' sources
+
+	"lacuna/util/window/Window.cpp"
+	"lacuna/util/window/GLFWCallbackWrapper.cpp"
+
+	# '/lacuna/util/window' headers
+
+	"lacuna/util/window/Window.hpp"
+	"lacuna/util/window/GLFWCallbackWrapper.hpp"
+
+	# '/lacuna/util/error' sources
+
+	"lacuna/util/error/ErrorHandler.cpp"
+
+	# '/lacuna/util/error' headers
+
+	"lacuna/util/error/ErrorHandler.hpp"
+
 	# '/lacuna/util/opengl' sources
 
 	"lacuna/util/opengl/Shader.cpp"
@@ -53,12 +71,10 @@ add_executable(${PROJECT_NAME}
 	# '/lacuna/render' headers
 
 	"lacuna/render/Renderer.hpp"
-	"lacuna/render/Window.hpp"
 
 	# '/lacuna/render' sources
 
 	"lacuna/render/Renderer.cpp"
-	"lacuna/render/Window.cpp"
 )
 target_include_directories(${PROJECT_NAME} PRIVATE
 	"${PROJECT_SOURCE_DIR}/deps/glfw/include"

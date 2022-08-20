@@ -20,6 +20,9 @@
 
 #include "lacuna/util/opengl/camera/OrthographicCamera.hpp"
 
+#include "lacuna/render/Renderer.hpp"
+#include "lacuna/util/window/Window.hpp"
+
 static bool running;
 
 static int screen_width, screen_height;
@@ -34,44 +37,15 @@ lacuna::OrthographicCamera camera = lacuna::OrthographicCamera(0.0f, 0.0f, 0.0f,
 int main(int argc, char *argv[])
 {
 	running = false;
-	GLFWwindow *window;
 	screen_width = 1280;
 	screen_height = 720;
 	out.open("session.log");
 
-	if (!glfwInit())
-	{
-		out << "FATAL ERROR: GLFW initialization failed!" << std::endl;
-		return -1;
-	}
+	lacuna::Window window("Lacuna Engine Test", screen_width, screen_height, 0);
+	lacuna::Renderer::Init(window, lacuna::RendererAPI::OPENGL);
 
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 6);
-	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-	glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
-	
-	window = glfwCreateWindow(screen_width, screen_height, "Hello, World!", NULL, NULL);
-	if (!window)
-	{
-		out << "FATAL ERROR: GLFW window creation failed: " << std::endl;
-		return -1;
-	}
-	glfwMakeContextCurrent(window);
-	glfwGetWindowSize(window, &screen_width, &screen_height);
-	{
-		const GLFWvidmode *vidmode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-		glfwSetWindowPos(window, (vidmode->width - screen_width) / 2, (vidmode->height - screen_height) / 2);
-	}
-	glfwShowWindow(window);
-
-	glfwSetScrollCallback(window, GLFWScrollCallback);
-	glfwSetFramebufferSizeCallback(window, GLFWFrambufferSizeCallback);
-
-	if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
-	{
-		out << "FATAL ERROR: GLAD initialization failed!" << std::endl;
-		return -1;
-	}
+	//glfwSetScrollCallback(window, GLFWScrollCallback);
+	//glfwSetFramebufferSizeCallback(window, GLFWFrambufferSizeCallback);
 
 	{
 		GLfloat texturedVertices[] = {
@@ -162,7 +136,7 @@ int main(int argc, char *argv[])
 		{
 			glfwPollEvents();
 
-			if (glfwWindowShouldClose(window))
+			if (glfwWindowShouldClose(window.GetWindowHandle()))
 			{
 				running = false;
 			}
@@ -192,12 +166,10 @@ int main(int argc, char *argv[])
 			glBindVertexArray(0);
 			glUseProgram(0);
 
-			glfwSwapBuffers(window);
+			glfwSwapBuffers(window.GetWindowHandle());
 		}
 	}
 
-	glfwMakeContextCurrent(NULL);
-	glfwDestroyWindow(window);
 	glfwTerminate();
 
 	return 0;
