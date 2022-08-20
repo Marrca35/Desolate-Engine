@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __vertex_array_hpp_
+#define __vertex_array_hpp_
 
 #include <glad/glad.h>
 
@@ -19,3 +20,4 @@ namespace lacuna {
 		GLuint m_ID;
 	};
 }
+#endif // __vertex_array_hpp_

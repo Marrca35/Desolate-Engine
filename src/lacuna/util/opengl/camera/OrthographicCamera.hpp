@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __orthographic_camera_hpp_
+#define __orthographic_camera_hpp_
 
 #include <glm/glm.hpp>
 
@@ -50,4 +51,4 @@ namespace lacuna {
 		float m_CameraRotationSpeed = 180.0f;
 	};
 }
-
+#endif // __orthographic_camera_hpp_

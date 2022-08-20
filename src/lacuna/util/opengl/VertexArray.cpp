@@ -1,9 +1,9 @@
-#include "VertexArray.h"
+#include "VertexArray.hpp"
 
 #include <glad/glad.h>
-#include "buffers/VertexBuffer.h"
+#include "buffers/VertexBuffer.hpp"
 
-#include "buffers/common/VertexBufferLayout.h"
+#include "buffers/common/VertexBufferLayout.hpp"
 
 #include <iostream>
 

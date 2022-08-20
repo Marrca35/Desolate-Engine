@@ -7,19 +7,18 @@
 #include <Windows.h>
 #endif
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include "lacuna/include.hpp"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
-#include "main.h"
+#include "main.hpp"
 
-#include "lacuna/util/opengl/Shader.h"
-#include "lacuna/util/opengl/VertexArray.h"
-#include "lacuna/util/opengl/Buffers.h"
+#include "lacuna/util/opengl/Shader.hpp"
+#include "lacuna/util/opengl/VertexArray.hpp"
+#include "lacuna/util/opengl/Buffers.hpp"
 
-#include "lacuna/util/opengl/camera/OrthographicCamera.h"
+#include "lacuna/util/opengl/camera/OrthographicCamera.hpp"
 
 static bool running;
 

@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __shader_hpp_
+#define __shader_hpp_
 
 #include <glad/glad.h>
 
@@ -63,3 +64,4 @@ namespace lacuna {
 		const GLuint m_ID;
 	};
 }
+#endif // __shader_hpp_

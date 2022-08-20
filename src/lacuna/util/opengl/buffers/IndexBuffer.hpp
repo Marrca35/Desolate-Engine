@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __index_buffer_hpp_
+#define __index_buffer_hpp_
 
 #include <glad/glad.h>
 
@@ -14,3 +15,4 @@ namespace lacuna {
 		GLuint m_ID, m_Count;
 	};
 }
+#endif // __index_buffer_hpp_

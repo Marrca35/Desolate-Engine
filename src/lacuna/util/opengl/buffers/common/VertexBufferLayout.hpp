@@ -1,4 +1,5 @@
-#pragma once
+#ifndef __vertex_buffer_layout_hpp_
+#define __vertex_buffer_layout_hpp_
 
 #include <glad/glad.h>
 
@@ -35,3 +36,4 @@ namespace lacuna {
 		UChar,
 	};
 }
+#endif // __vertex_buffer_layout_hpp_

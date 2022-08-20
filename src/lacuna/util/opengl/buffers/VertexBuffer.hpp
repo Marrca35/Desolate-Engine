@@ -1,8 +1,9 @@
-#pragma once
+#ifndef __vertex_buffer_hpp_
+#define __vertex_buffer_hpp_
 
 #include <glad/glad.h>
 
-#include "common/VertexBufferLayout.h"
+#include "common/VertexBufferLayout.hpp"
 
 namespace lacuna {
 	class VertexBuffer {
@@ -15,3 +16,4 @@ namespace lacuna {
 		GLuint m_ID;
 	};
 }
+#endif // __vertex_buffer_hpp_

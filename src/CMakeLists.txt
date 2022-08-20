@@ -6,21 +6,23 @@ add_executable(${PROJECT_NAME}
 	
 	# '/' headers
 
-	"main.h"
+	"main.hpp"
+
+	# '/lacuna' headers
+
+	"lacuna/include.hpp"
 
 	# '/lacuna/util/opengl' sources
 
-	"lacuna/util/opengl/Renderer.cpp"
 	"lacuna/util/opengl/Shader.cpp"
 	"lacuna/util/opengl/Texture.cpp"
 	"lacuna/util/opengl/VertexArray.cpp"
 
 	# '/lacuna/util/opengl' headers
 
-	"lacuna/util/opengl/Renderer.h"
-	"lacuna/util/opengl/Shader.h"
-	"lacuna/util/opengl/Texture.h"
-	"lacuna/util/opengl/VertexArray.h"
+	"lacuna/util/opengl/Shader.hpp"
+	"lacuna/util/opengl/Texture.hpp"
+	"lacuna/util/opengl/VertexArray.hpp"
 
 	# '/lacuna/util/opengl/buffers' sources
 
@@ -29,8 +31,8 @@ add_executable(${PROJECT_NAME}
 
 	# '/lacuna/util/opengl/buffers' headers
 
-	"lacuna/util/opengl/buffers/IndexBuffer.h"
-	"lacuna/util/opengl/buffers/VertexBuffer.h"
+	"lacuna/util/opengl/buffers/IndexBuffer.hpp"
+	"lacuna/util/opengl/buffers/VertexBuffer.hpp"
 
 	# '/lacuna/util/opengl/buffers/common' sources
 
@@ -38,7 +40,7 @@ add_executable(${PROJECT_NAME}
 	
 	# '/lacuna/util/opengl/buffers/common' headers
 
-	"lacuna/util/opengl/buffers/common/VertexBufferLayout.h"
+	"lacuna/util/opengl/buffers/common/VertexBufferLayout.hpp"
 
 	# '/lacuna/util/opengl/camera' sources
 
@@ -46,13 +48,24 @@ add_executable(${PROJECT_NAME}
 
 	# '/lacuna/util/opengl/camera' headers
 
-	"lacuna/util/opengl/camera/OrthographicCamera.h"
+	"lacuna/util/opengl/camera/OrthographicCamera.hpp"
+
+	# '/lacuna/render' headers
+
+	"lacuna/render/Renderer.hpp"
+	"lacuna/render/Window.hpp"
+
+	# '/lacuna/render' sources
+
+	"lacuna/render/Renderer.cpp"
+	"lacuna/render/Window.cpp"
 )
 target_include_directories(${PROJECT_NAME} PRIVATE
 	"${PROJECT_SOURCE_DIR}/deps/glfw/include"
 	"${PROJECT_SOURCE_DIR}/deps/glad/include"
 	"${PROJECT_SOURCE_DIR}/deps/glm"
 	"${PROJECT_SOURCE_DIR}/deps/stb"
+	"${PROJECT_SOURCE_DIR}/src"
 )
 target_link_directories(${PROJECT_NAME} PRIVATE
 	"${CMAKE_BINARY_DIR}/deps/glfw/src"
