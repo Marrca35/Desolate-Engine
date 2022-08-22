@@ -15,12 +15,16 @@ add_executable(${PROJECT_NAME}
 	# '/lacuna/util/window' sources
 
 	"lacuna/util/window/Window.cpp"
-	"lacuna/util/window/GLFWCallbackWrapper.cpp"
+	"lacuna/input/GLFWCallbackWrapper.cpp"
+	"lacuna/input/Mouse.cpp"
+	"lacuna/input/Keyboard.cpp"
 
 	# '/lacuna/util/window' headers
 
 	"lacuna/util/window/Window.hpp"
-	"lacuna/util/window/GLFWCallbackWrapper.hpp"
+	"lacuna/input/GLFWCallbackWrapper.hpp"
+	"lacuna/input/Mouse.hpp"
+	"lacuna/input/Keyboard.hpp"
 
 	# '/lacuna/util/error' sources
 

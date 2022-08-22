@@ -15,6 +15,7 @@ namespace lacuna {
 	                    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	                    glfwWindowHint(GLFW_VISIBLE, GLFW_FALSE);
                         window.Init();
+                        GLFWCallbackWrapper::Init(window);
                         glfwMakeContextCurrent(window.GetWindowHandle());
                         if (!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress))
 	                    {
@@ -42,6 +43,7 @@ namespace lacuna {
                     {
                         glfwMakeContextCurrent(nullptr);
                         window.Destroy();
+                        GLFWCallbackWrapper::Destroy(window);
                         glfwTerminate();
                         break;
                     }

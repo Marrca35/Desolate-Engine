@@ -3,7 +3,7 @@
 
 #include "lacuna/include.hpp"
 #include "lacuna/util/window/Window.hpp"
-#include "lacuna/util/window/GLFWCallbackWrapper.hpp"
+#include "lacuna/input/GLFWCallbackWrapper.hpp"
 
 namespace lacuna {
     enum RendererAPI : int {

@@ -141,6 +141,19 @@ int main(int argc, char *argv[])
 				running = false;
 			}
 
+			if (window.GetKeyboard().GetKeyPressed(GLFW_KEY_W))
+			{
+				zoom++;
+				zoom = std::max(zoom, 0.25f);
+				camera.SetProjection(-ratio * zoom, ratio * zoom, -zoom, zoom);
+			}
+			else if (window.GetKeyboard().GetKeyPressed(GLFW_KEY_S))
+			{
+				zoom--;
+				zoom = std::max(zoom, 0.25f);
+				camera.SetProjection(-ratio * zoom, ratio * zoom, -zoom, zoom);
+			}
+
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
 
@@ -183,7 +196,6 @@ void GLFWFrambufferSizeCallback(GLFWwindow *window, int width, int height)
 void GLFWScrollCallback(GLFWwindow *window, double xoffset, double yoffset)
 {
 	zoom -= yoffset * 0.25f;
-	zoom = std::max(zoom, 0.25f);
 	camera.SetProjection(-ratio * zoom, ratio * zoom, -zoom, zoom);
 }
 
