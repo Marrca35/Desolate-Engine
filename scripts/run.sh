@@ -1,3 +1,3 @@
 #!/bin/bash
 
-./build/src/LacunaEngine
+./build/src/DesolateEngine

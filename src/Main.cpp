@@ -7,21 +7,22 @@
 #include <Windows.h>
 #endif
 
-#include "lacuna/include.hpp"
+#include "desolate/include.hpp"
 
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 
 #include "main.hpp"
 
-#include "lacuna/util/opengl/Shader.hpp"
-#include "lacuna/util/opengl/VertexArray.hpp"
-#include "lacuna/util/opengl/Buffers.hpp"
+#include "desolate/util/opengl/Shader.hpp"
+#include "desolate/util/opengl/VertexArray.hpp"
+#include "desolate/util/opengl/Buffers.hpp"
 
-#include "lacuna/util/opengl/camera/OrthographicCamera.hpp"
+#include "desolate/util/opengl/camera/OrthographicCamera.hpp"
 
-#include "lacuna/render/Renderer.hpp"
-#include "lacuna/util/window/Window.hpp"
+#include "desolate/input/Input.hpp"
+#include "desolate/render/Renderer.hpp"
+#include "desolate/util/window/Window.hpp"
 
 static bool running;
 
@@ -32,7 +33,7 @@ static std::ofstream out;
 const float ratio = (16.0f / 9.0f);
 float zoom = 3.5f;
 
-lacuna::OrthographicCamera camera = lacuna::OrthographicCamera(0.0f, 0.0f, 0.0f, 0.0f);
+desolate::OrthographicCamera camera = desolate::OrthographicCamera(0.0f, 0.0f, 0.0f, 0.0f);
 
 int main(int argc, char *argv[])
 {
@@ -41,8 +42,8 @@ int main(int argc, char *argv[])
 	screen_height = 720;
 	out.open("session.log");
 
-	lacuna::Window window("Lacuna Engine Test", screen_width, screen_height, 0);
-	lacuna::Renderer::Init(window, lacuna::RendererAPI::OPENGL);
+	desolate::Window window("desolate Engine Test", screen_width, screen_height, 0);
+	desolate::Renderer::Init(window, desolate::RendererAPI::OPENGL);
 
 	//glfwSetScrollCallback(window, GLFWScrollCallback);
 	//glfwSetFramebufferSizeCallback(window, GLFWFrambufferSizeCallback);
@@ -93,30 +94,30 @@ int main(int argc, char *argv[])
 			9, 11, 8,
 		};
 
-		lacuna::VertexArray texturedVA;
-		lacuna::VertexBuffer texturedVB(texturedVertices, sizeof(texturedVertices));
-		lacuna::VertexBufferLayout texturedVBL;
-		texturedVBL.Push(lacuna::push_t::Float, 3, sizeof(float) * 5);
-		texturedVBL.Push(lacuna::push_t::Float, 2, sizeof(float) * 5);
+		desolate::VertexArray texturedVA;
+		desolate::VertexBuffer texturedVB(texturedVertices, sizeof(texturedVertices));
+		desolate::VertexBufferLayout texturedVBL;
+		texturedVBL.Push(desolate::push_t::Float, 3, sizeof(float) * 5);
+		texturedVBL.Push(desolate::push_t::Float, 2, sizeof(float) * 5);
 		texturedVA.AddBuffer(texturedVB, texturedVBL);
-		lacuna::IndexBuffer ib(indices, 18);
+		desolate::IndexBuffer ib(indices, 18);
 
 		glBindVertexArray(0);
 		glBindBuffer(GL_ARRAY_BUFFER, 0);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, 0);
 
-		lacuna::VertexArray coloredVA;
-		lacuna::VertexBuffer coloredVB(coloredVertices, sizeof(coloredVertices));
-		lacuna::VertexBufferLayout coloredVBL;
-		coloredVBL.Push(lacuna::push_t::Float, 3, sizeof(float) * 7);
-		coloredVBL.Push(lacuna::push_t::Float, 4, sizeof(float) * 7);
+		desolate::VertexArray coloredVA;
+		desolate::VertexBuffer coloredVB(coloredVertices, sizeof(coloredVertices));
+		desolate::VertexBufferLayout coloredVBL;
+		coloredVBL.Push(desolate::push_t::Float, 3, sizeof(float) * 7);
+		coloredVBL.Push(desolate::push_t::Float, 4, sizeof(float) * 7);
 		coloredVA.AddBuffer(coloredVB, coloredVBL);
 		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, ib.GetID());
 
-		auto texturedShader = lacuna::Shader::LoadFromFiles("./assets/shaders/Textured.vert", "./assets/shaders/Textured.frag");
-		auto coloredShader = lacuna::Shader::LoadFromFiles("./assets/shaders/Colored.vert", "./assets/shaders/Colored.frag");
+		auto texturedShader = desolate::Shader::LoadFromFiles("./assets/shaders/Textured.vert", "./assets/shaders/Textured.frag");
+		auto coloredShader = desolate::Shader::LoadFromFiles("./assets/shaders/Colored.vert", "./assets/shaders/Colored.frag");
 
-		camera = lacuna::OrthographicCamera(-ratio * zoom, ratio * zoom, -zoom, zoom);
+		camera = desolate::OrthographicCamera(-ratio * zoom, ratio * zoom, -zoom, zoom);
 		glm::mat4 tansform = glm::translate(glm::mat4(1.0f), glm::vec3(0, 0, 0));
 
 		glBindVertexArray(0);
@@ -131,28 +132,24 @@ int main(int argc, char *argv[])
 
 		glViewport(0, 0, screen_width, screen_height);
 
+		double xoffset, yoffset;
+
 		running = true;
 		while (running)
 		{
-			glfwPollEvents();
+			desolate::Renderer::Update(window);
 
 			if (glfwWindowShouldClose(window.GetWindowHandle()))
 			{
 				running = false;
 			}
 
-			if (window.GetKeyboard().GetKeyPressed(GLFW_KEY_W))
-			{
-				zoom++;
-				zoom = std::max(zoom, 0.25f);
-				camera.SetProjection(-ratio * zoom, ratio * zoom, -zoom, zoom);
-			}
-			else if (window.GetKeyboard().GetKeyPressed(GLFW_KEY_S))
-			{
-				zoom--;
-				zoom = std::max(zoom, 0.25f);
-				camera.SetProjection(-ratio * zoom, ratio * zoom, -zoom, zoom);
-			}
+			window.GetMouse().GetScrollOffset(xoffset, yoffset);
+			zoom -= yoffset * 0.25f;
+			zoom = std::max(zoom, 0.25f);
+			camera.SetProjection(-ratio * zoom, ratio * zoom, -zoom, zoom);
+
+			window.GetMouse().Update();
 
 			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 			glClearColor(0.1f, 0.1f, 0.1f, 1.0f);

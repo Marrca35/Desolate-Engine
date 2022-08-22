@@ -8,77 +8,77 @@ add_executable(${PROJECT_NAME}
 
 	"main.hpp"
 
-	# '/lacuna' headers
+	# '/desolate' headers
 
-	"lacuna/include.hpp"
+	"desolate/include.hpp"
 
-	# '/lacuna/util/window' sources
+	# '/desolate/util/window' sources
 
-	"lacuna/util/window/Window.cpp"
-	"lacuna/input/GLFWCallbackWrapper.cpp"
-	"lacuna/input/Mouse.cpp"
-	"lacuna/input/Keyboard.cpp"
+	"desolate/util/window/Window.cpp"
+	"desolate/input/GLFWCallbackWrapper.cpp"
+	"desolate/input/Mouse.cpp"
+	"desolate/input/Keyboard.cpp"
 
-	# '/lacuna/util/window' headers
+	# '/desolate/util/window' headers
 
-	"lacuna/util/window/Window.hpp"
-	"lacuna/input/GLFWCallbackWrapper.hpp"
-	"lacuna/input/Mouse.hpp"
-	"lacuna/input/Keyboard.hpp"
+	"desolate/util/window/Window.hpp"
+	"desolate/input/GLFWCallbackWrapper.hpp"
+	"desolate/input/Mouse.hpp"
+	"desolate/input/Keyboard.hpp"
 
-	# '/lacuna/util/error' sources
+	# '/desolate/util/error' sources
 
-	"lacuna/util/error/ErrorHandler.cpp"
+	"desolate/util/error/ErrorHandler.cpp"
 
-	# '/lacuna/util/error' headers
+	# '/desolate/util/error' headers
 
-	"lacuna/util/error/ErrorHandler.hpp"
+	"desolate/util/error/ErrorHandler.hpp"
 
-	# '/lacuna/util/opengl' sources
+	# '/desolate/util/opengl' sources
 
-	"lacuna/util/opengl/Shader.cpp"
-	"lacuna/util/opengl/Texture.cpp"
-	"lacuna/util/opengl/VertexArray.cpp"
+	"desolate/util/opengl/Shader.cpp"
+	"desolate/util/opengl/Texture.cpp"
+	"desolate/util/opengl/VertexArray.cpp"
 
-	# '/lacuna/util/opengl' headers
+	# '/desolate/util/opengl' headers
 
-	"lacuna/util/opengl/Shader.hpp"
-	"lacuna/util/opengl/Texture.hpp"
-	"lacuna/util/opengl/VertexArray.hpp"
+	"desolate/util/opengl/Shader.hpp"
+	"desolate/util/opengl/Texture.hpp"
+	"desolate/util/opengl/VertexArray.hpp"
 
-	# '/lacuna/util/opengl/buffers' sources
+	# '/desolate/util/opengl/buffers' sources
 
-	"lacuna/util/opengl/buffers/IndexBuffer.cpp"
-	"lacuna/util/opengl/buffers/VertexBuffer.cpp"
+	"desolate/util/opengl/buffers/IndexBuffer.cpp"
+	"desolate/util/opengl/buffers/VertexBuffer.cpp"
 
-	# '/lacuna/util/opengl/buffers' headers
+	# '/desolate/util/opengl/buffers' headers
 
-	"lacuna/util/opengl/buffers/IndexBuffer.hpp"
-	"lacuna/util/opengl/buffers/VertexBuffer.hpp"
+	"desolate/util/opengl/buffers/IndexBuffer.hpp"
+	"desolate/util/opengl/buffers/VertexBuffer.hpp"
 
-	# '/lacuna/util/opengl/buffers/common' sources
+	# '/desolate/util/opengl/buffers/common' sources
 
-	"lacuna/util/opengl/buffers/common/VertexBufferLayout.cpp"
+	"desolate/util/opengl/buffers/common/VertexBufferLayout.cpp"
 	
-	# '/lacuna/util/opengl/buffers/common' headers
+	# '/desolate/util/opengl/buffers/common' headers
 
-	"lacuna/util/opengl/buffers/common/VertexBufferLayout.hpp"
+	"desolate/util/opengl/buffers/common/VertexBufferLayout.hpp"
 
-	# '/lacuna/util/opengl/camera' sources
+	# '/desolate/util/opengl/camera' sources
 
-	"lacuna/util/opengl/camera/OrthographicCamera.cpp"
+	"desolate/util/opengl/camera/OrthographicCamera.cpp"
 
-	# '/lacuna/util/opengl/camera' headers
+	# '/desolate/util/opengl/camera' headers
 
-	"lacuna/util/opengl/camera/OrthographicCamera.hpp"
+	"desolate/util/opengl/camera/OrthographicCamera.hpp"
 
-	# '/lacuna/render' headers
+	# '/desolate/render' headers
 
-	"lacuna/render/Renderer.hpp"
+	"desolate/render/Renderer.hpp"
 
-	# '/lacuna/render' sources
+	# '/desolate/render' sources
 
-	"lacuna/render/Renderer.cpp"
+	"desolate/render/Renderer.cpp"
 )
 target_include_directories(${PROJECT_NAME} PRIVATE
 	"${PROJECT_SOURCE_DIR}/deps/glfw/include"
