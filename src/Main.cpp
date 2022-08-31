@@ -67,10 +67,10 @@ int main(int argc, char *argv[])
 		};
 
 		GLfloat coloredVertices[] = {
-		   -1.5f, -0.5f, -1.0f, 1.0f, 0.0f, 0.0f, 1.0f,
-		   -0.5f, -0.5f,  1.0f, 1.0f, 0.0f, 0.0f, 1.0f,
-		   -0.5f,  0.5f,  1.0f, 1.0f, 0.0f, 0.0f, 1.0f,
-		   -1.5f,  0.5f, -1.0f, 1.0f, 0.0f, 0.0f, 1.0f,
+		   -1.5f, -0.5f, -1.0f, 1.0f, 0.0f, 0.0f, 1.0f, // bottom left
+		   -0.5f, -0.5f,  1.0f, 1.0f, 0.0f, 0.0f, 1.0f, // bottom right
+		   -0.5f,  0.5f,  1.0f, 1.0f, 0.0f, 0.0f, 1.0f, // top right
+		   -1.5f,  0.5f, -1.0f, 1.0f, 0.0f, 0.0f, 1.0f, // top left
 
 		    0.5f, -0.5f,  1.0f, 0.0f, 1.0f, 0.0f, 1.0f,
 		    1.5f, -0.5f, -1.0f, 0.0f, 1.0f, 0.0f, 1.0f,
@@ -87,11 +87,11 @@ int main(int argc, char *argv[])
 			0, 1, 2,
 			2, 3, 0,
 
-			4, 5, 6,
-			6, 7, 4,
+			//4, 5, 6,
+			//6, 7, 4,
 
-			8, 9, 10,
-			9, 11, 8,
+			//8, 9, 10,
+			//9, 11, 8,
 		};
 
 		desolate::VertexArray texturedVA;
@@ -138,6 +138,7 @@ int main(int argc, char *argv[])
 		while (running)
 		{
 			desolate::Renderer::Update(window);
+			window.GetMouse().Update();
 
 			if (glfwWindowShouldClose(window.GetWindowHandle()))
 			{
@@ -149,16 +150,25 @@ int main(int argc, char *argv[])
 			zoom = std::max(zoom, 0.25f);
 			camera.SetProjection(-ratio * zoom, ratio * zoom, -zoom, zoom);
 
-			window.GetMouse().Update();
-
-			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-			glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+			if (window.GetKeyboard().GetKeyPressed(GLFW_KEY_F11))
+			{
+				window.ChangeFullscreen();
+				//window.GetKeyboard().SetKeyPressed(GLFW_KEY_F11, false);
+			}
 
 			texturedShader->SetUniformMat4x4("u_ViewProj", camera.GetViewProjectionMatrix());
 			texturedShader->SetUniformMat4x4("u_Transform", tansform);
 
 			coloredShader->SetUniformMat4x4("u_ViewProj", camera.GetViewProjectionMatrix());
 			coloredShader->SetUniformMat4x4("u_Transform", tansform);
+
+			glUseProgram(coloredShader->GetID());
+			glBindVertexArray(coloredVA.GetID());
+
+			glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+        	glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
+
+			desolate::Renderer::Render(window, coloredVA, ib, coloredShader);
 
 			glUseProgram(texturedShader->GetID());
 			glBindVertexArray(texturedVA.GetID());
@@ -167,11 +177,6 @@ int main(int argc, char *argv[])
 
 			glBindVertexArray(0);
 			glUseProgram(0);
-
-			glUseProgram(coloredShader->GetID());
-			glBindVertexArray(coloredVA.GetID());
-
-			glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr);
 
 			glBindVertexArray(0);
 			glUseProgram(0);
@@ -183,17 +188,6 @@ int main(int argc, char *argv[])
 	glfwTerminate();
 
 	return 0;
-}
-
-void GLFWFrambufferSizeCallback(GLFWwindow *window, int width, int height)
-{
-	glViewport(0, 0, width, height);
-}
-
-void GLFWScrollCallback(GLFWwindow *window, double xoffset, double yoffset)
-{
-	zoom -= yoffset * 0.25f;
-	camera.SetProjection(-ratio * zoom, ratio * zoom, -zoom, zoom);
 }
 
 void GLFWErrorCallback(int error, const char *description)

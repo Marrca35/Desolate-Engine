@@ -20,7 +20,7 @@ namespace desolate
         static void GLFWKeyCallback(GLFWwindow *window, int key, int scancode, int action, int mods);
         static void GLFWCharCallback(GLFWwindow *window, unsigned int codepoint);
         static void GLFWCursorPosCallback(GLFWwindow *window, double xpos, double ypos);
-        static void GLFWSrollCallback(GLFWwindow* winndow, double xoffset, double yoffset);
+        static void GLFWSrollCallback(GLFWwindow* window, double xoffset, double yoffset);
     private:
         static void _init(GLFWwindow *window);
         static void _destroy(GLFWwindow *window);

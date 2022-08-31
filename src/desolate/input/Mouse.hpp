@@ -38,8 +38,8 @@ namespace desolate
             {
                 xoffset = this->xoffset;
                 yoffset = this->yoffset;
-                xoffset = 0;
-                yoffset = 0;
+                this->xoffset = 0;
+                this->yoffset = 0;
             }
             bool GetRawInput() { return raw; }
 

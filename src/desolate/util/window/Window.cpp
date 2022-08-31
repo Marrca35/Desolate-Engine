@@ -6,33 +6,45 @@
 namespace desolate
 {
     Window::Window(const char *name, int width, int height, int monitor)
-        : name(name), width(width), height(height), monitor(monitor), fullscreen(false), keyboard(*this), mouse(*this) {}
+        : m_name(name), m_width(width), m_height(height), m_monitor(monitor), m_fullscreen(false), m_keyboard(*this), m_mouse(*this) {}
 
     void Window::Init()
     {
-        if (fullscreen)
+        if (m_fullscreen)
         {
-            window = glfwCreateWindow(width, height, name, getMonitor(), nullptr);
+            m_window = glfwCreateWindow(m_width, m_height, m_name, getMonitor(), nullptr);
         }
         else
         {
-            window = glfwCreateWindow(width, height, name, nullptr, nullptr);
+            m_window = glfwCreateWindow(m_width, m_height, m_name, nullptr, nullptr);
         }
-        if (!window)
+        if (!m_window)
         {
             ErrorHandler::ThrowError("FATAL: failed to initialize GLFW window!", ErrorType::RUNTIME);
         }
-        if (!fullscreen)
+        if (!m_fullscreen)
         {
-            glfwGetWindowSize(window, &width, &height);
+            glfwGetWindowSize(m_window, &m_width, &m_height);
             const GLFWvidmode *vidmode = glfwGetVideoMode(getMonitor());
-            glfwSetWindowPos(window, (vidmode->width - width) / 2, (vidmode->height - height) / 2);
+            glfwSetWindowPos(m_window, (vidmode->width - m_width) / 2, (vidmode->height - m_height) / 2);
         }
     }
 
     void Window::Destroy()
     {
-        glfwDestroyWindow(window);
+        glfwDestroyWindow(m_window);
+    }
+
+    void Window::ChangeFullscreen()
+    {
+        this->m_fullscreen = !m_fullscreen;
+        if (m_fullscreen)
+        {
+            const GLFWvidmode *vidmode = glfwGetVideoMode(getMonitor());
+            glfwSetWindowMonitor(m_window, getMonitor(), 0, 0, vidmode->width, vidmode->height, vidmode->refreshRate);
+        }
+        else
+            glfwSetWindowMonitor(m_window, nullptr, 0, 0, m_width, m_height, GLFW_DONT_CARE);
     }
 
     GLFWmonitor *Window::getMonitor()
@@ -43,6 +55,6 @@ namespace desolate
         {
             ErrorHandler::ThrowError("FATAL: couldn't initialize GLFW window, no monitors detected!", ErrorType::RUNTIME);
         }
-        return monitors[monitor];
+        return monitors[m_monitor];
     }
 }

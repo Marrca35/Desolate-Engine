@@ -67,10 +67,12 @@ add_executable(${PROJECT_NAME}
 	# '/desolate/util/opengl/camera' sources
 
 	"desolate/util/opengl/camera/OrthographicCamera.cpp"
+	"desolate/util/opengl/camera/PerspectiveCamera.cpp"
 
 	# '/desolate/util/opengl/camera' headers
 
 	"desolate/util/opengl/camera/OrthographicCamera.hpp"
+	"desolate/util/opengl/camera/PerspectiveCamera.hpp"
 
 	# '/desolate/render' headers
 

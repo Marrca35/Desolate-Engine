@@ -52,7 +52,7 @@ namespace desolate
         }
     }
 
-    void Renderer::_destroy(Window& window, RendererAPI api)
+    void Renderer::_destroy(Window &window, RendererAPI api)
     {
         switch (api)
         {
@@ -75,14 +75,20 @@ namespace desolate
         }
     }
 
-    void Renderer::Update(Window& window)
+    void Renderer::Update(Window &window)
     {
         glfwPollEvents();
-        window.GetMouse().Update();
     }
 
-    void Renderer::Render()
+    void Renderer::Render(Window& window, VertexArray &va, IndexBuffer &ib, std::unique_ptr<Shader> &shader)
     {
 
+        glUseProgram(shader->GetID());
+	    glBindVertexArray(va.GetID());
+
+        glDrawElements(GL_TRIANGLES, ib.GetCount(), GL_UNSIGNED_INT, nullptr);
+
+        glBindVertexArray(0);
+		glUseProgram(0);
     }
 };

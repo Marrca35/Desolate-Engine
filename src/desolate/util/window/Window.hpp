@@ -15,23 +15,24 @@ namespace desolate
         void Init();
         void Destroy();
 
-        void SetFullscreen(bool fullscreen) { this->fullscreen = fullscreen; }
+        void ChangeFullscreen();
 
-        GLFWwindow *GetWindowHandle() { return window; }
-        input::Keyboard& GetKeyboard() { return keyboard; }
-        input::Mouse& GetMouse() { return mouse; }
+        GLFWwindow *GetWindowHandle() { return m_window; }
+        input::Keyboard& GetKeyboard() { return m_keyboard; }
+        input::Mouse& GetMouse() { return m_mouse; }
     private:
         GLFWmonitor *getMonitor();
 
     private:
-        GLFWwindow *window;
+        GLFWwindow *m_window;
 
-        const char *name;
-        int width, height;
-        int monitor;
-        bool fullscreen;
-        input::Keyboard keyboard;
-        input::Mouse mouse;
+        const char *m_name;
+        int m_width, m_height;
+        int m_monitor;
+        int m_refreshRate;
+        bool m_fullscreen;
+        input::Keyboard m_keyboard;
+        input::Mouse m_mouse;
     };
 }
 

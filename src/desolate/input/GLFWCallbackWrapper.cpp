@@ -2,6 +2,8 @@
 
 #include "Input.hpp"
 
+#include <iostream>
+
 namespace desolate
 {
     input::Keyboard *GLFWCallbackWrapper::keyboard;
@@ -38,6 +40,7 @@ namespace desolate
 
     void GLFWCallbackWrapper::GLFWErrorCallback(int error, const char *description)
     {
+        std::cerr << "[GLFW ERROR " << error << "]: " << description << std::endl;
     }
 
     void GLFWCallbackWrapper::GLFWFramebufferSizeCallback(GLFWwindow *window, int width, int height)
@@ -59,13 +62,18 @@ namespace desolate
         {
             return;
         }
-        if (action == GLFW_PRESS || action == GLFW_REPEAT)
+        if (action == GLFW_PRESS)
         {
             keyboard->SetKeyPressed(key, true);
         }
-        else
+        else if (action == GLFW_REPEAT)
+        {
+            keyboard->SetKeyRepeated(key, true);
+        }
+        else if (action == GLFW_RELEASE)
         {
             keyboard->SetKeyPressed(key, false);
+            keyboard->SetKeyRepeated(key, false);
         }
     }
 
